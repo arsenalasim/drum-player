@@ -56,6 +56,7 @@ export function addKeyboardHandler(e){
 
 function addSound(e){
 	const sound = this.children[1]['textContent'];
+	Socket.emitMessage({sound})
 	playSound(sound,this);
 }
 

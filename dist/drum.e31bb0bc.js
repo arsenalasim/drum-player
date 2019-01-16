@@ -9347,13 +9347,15 @@ function _defineProperties(target, props) { for (var i = 0; i < props.length; i+
 
 function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
 
+var server = 'http://192.168.100.5:8000';
+
 var Socket =
 /*#__PURE__*/
 function () {
   function Socket() {
     _classCallCheck(this, Socket);
 
-    this.socket = _socket.default.connect('localhost:8000');
+    this.socket = _socket.default.connect(server);
   }
 
   _createClass(Socket, [{
@@ -9490,6 +9492,11 @@ _toConsumableArray(playButton).forEach(function (button) {
 
 function addSound(e) {
   var sound = this.children[1]['textContent'];
+
+  _socket.default.emitMessage({
+    sound: sound
+  });
+
   playSound(sound, this);
 }
 
@@ -9537,7 +9544,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "39445" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "33979" + '/');
 
   ws.onmessage = function (event) {
     var data = JSON.parse(event.data);

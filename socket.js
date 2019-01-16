@@ -1,9 +1,11 @@
 import io from 'socket.io-client';
 import {playSound} from './index'
 
+const server = 'http://192.168.100.5:8000'
+
 class Socket{
 	constructor(){
-		this.socket = io.connect('localhost:8000');
+		this.socket = io.connect(server);
 	}
 
 	emitMessage(message){
